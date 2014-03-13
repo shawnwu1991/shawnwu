@@ -1,10 +1,12 @@
 /*************************************************************************
 	> File Name: a.c
-	> Author: ma6174
-	> Mail: ma6174@163.com 
+	> Author: shawnwu1991
+	> Mail: shawnwu1991@gmail.com 
 	> Created Time: 2014年03月12日 星期三 22时32分43秒
  ************************************************************************/
 
 #include<stdio.h>
-adfsasadfsa
-shsidhaisd
+
+int main(){
+    printf("test git push!");
+}
