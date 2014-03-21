@@ -1,0 +1,11 @@
+简单的github 操作步骤：
+
+1. git clone https://https://github.com/shawnwu1991/shawnwu.git
+    #复制github的仓库至本地
+2. 本地文件操作
+3. git add 文件名
+    #完成本地仓库的依赖
+4. git commit -m "一些关于本次递交的简介"
+    #完成本地仓库的添加（分配身份）
+5. git push origin master
+    #完成在线上传，之后可以刷新github 当前的repository查看项目refresh status
