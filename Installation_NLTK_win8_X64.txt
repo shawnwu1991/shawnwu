@@ -1,0 +1,14 @@
+在64位win8下安装NLTK工具包
+
+1. Install Python
+2. Install NumPy
+3. Install Setuptools
+Start>Run... e:\Python2.7.6虚拟环境文件夹\Python\Scripts\easy_install pip
+
+7. Install PyYAML and NLTK: 
+Start>RUn... e;\Python2.7.6\Scripts\pip install pyyaml nltk 
+
+Test installation: 
+    Start>All Programs>Python27>IDLE, then type import nltk 
+
+可能网络不稳定，多次尝试！
