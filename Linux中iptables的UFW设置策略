@@ -1,0 +1,41 @@
+Linux IP信息包过滤系统结构：
+1. 组成元素：
+    <1> iptables组件:  属于用户态应用，它使插入、修改和删去信息包过滤表中的规则变得容易。
+    <2> netfilter组件： 属于内核态，由一些信息包过滤表组成，这些表包含内核用来控制信息包过滤处理的规则集。
+2. 特点：
+    <1> stateful firewall: netfilter, iptables 系统可以配置有状态的防火墙。有状态的防火墙能够指定并记住为
+    发送或接受信息包所建立的连接的状态（注意，这个特性对于过滤IP Address, port有很好的作用）
+    <2> 状态类型： ESTABLISHED, INVAID, NEW, RELATED
+3. iptables的CHAIN, TABLES, TARGETS
+    定义不同的TABLE，每个TABLE都包含几个内部的CHAIN，每个CHAIN就是一个规则列表（可以自定义），每条规则对
+    相应的包做相应的处理，每条规则被成为TARGET；
+    <1> TARGETS: 每条规则指定所检查包的特征和目标，如果包不匹配，将送往该链中的下一条规则(TARGET)检查。如
+    果匹配，那么下一条规则由目标值确定。目标值可以是用户自定义的CHAIN或者某个值（ACCEPT， DROP， QUEUE， 
+    RETURN）
+    <2> CHAIN: 四条链
+        a. INPUT: 处理进入的包；
+        b. FORWARD: 处理通过（转发）的包；
+        c. OUTPUT: 处理本地生成的包（发出的）
+        d. PREROUTING: 修改到来的包；
+        e. POSTROUTING: 修改准备发出的包；
+    <3> TABLES: 
+        a. filter (默认的表):INPUT -> FORWARD -> OUTPUT
+        b. nat: PREROUTING -> OUTPUT -> POSTROUTING
+        c. mangle (用来对指定的包进行修改的): PREROUTING -> OUTPUT
+        d. raw: PREROUTING -> OUTPUT
+4. UFW: the Uncomplicated Firewall. iptables的规则设置比较复杂，因此ubuntu提供了ufw设定工具，来简化iptables
+的某些设定，其核心依然是iptables。默认状态下，UFW不允许外部主机主动与本地主机建立通信，但允许本地主机主动
+与外部建立联系。
+    <1> 启动 sudo ufw enable
+             sudo ufw default deny
+    <2> 开启/禁用 sudo ufw allow|deny[service]
+    <3> 打开或关闭某个端口：
+    sudo ufw allow smtp 允许所有的外部IP访问本机的25/tcp（smtp）端口
+    sudo ufw allow 22/tcp 允许所有外部IP访问本机的22/tcp(ssh)端口
+    sudo ufw allow 53 允许所有的外部访问53端口（tcp/udp）
+    sudo ufw allow from 192.168.1.100 允许此IP访问所有的本地端口
+    sudo ufw allow proto udp 192.168.0.1 port 53 to 192.168.0.2 port 53
+    sudo ufw deny smtp 删除上面建立的某条规则
+    sudo ufw delete allow smtp 删除上面建立的某条规则
+    目前先总结这么多～
+
