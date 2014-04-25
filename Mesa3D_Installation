@@ -1,0 +1,11 @@
+linux下Mesa3D的安装指南
+
+    通常，我们在windows中利用opengl或opencv等扩展库进行2D或3D图形的绘制。但windows并非图形程序的唯一开发平台，我们同样
+可以在unix-like环境中进行相关开发。在网上搜集了相关信息后，发现即便linux中利用opengl或者opencv开发的项目未尝有某窗
+户那么多，但同样有一些很不错的开发工具，例如Meta3D。
+    Mesa3D是一款优秀的开源gl的集成开发库，说它集成，是因为他将GL中关于图像处理的部分以及接口架构、消息响应机制等功能都
+集成起来。
+    接下来，我将记录自己安装Mesa3D的过程。
+    安装环境：
+            ubuntu 13.04
+            Mesa3D安装包： MesaLib-10.0.0.tar.gz mesa-demos-8.1.0.tar.gz
